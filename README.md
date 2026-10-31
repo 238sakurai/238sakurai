@@ -15,12 +15,6 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-### 📊 Metrics
-
-<p align="center">
-  <img src="./output/metrics.svg" alt="GitHub metrics" />
-</p>
-
 ### 🌆 Contributions
 
 <picture>
@@ -28,3 +22,9 @@ Here are some ideas to get you started:
   <source media="(prefers-color-scheme: light)" srcset="./profile-3d-contrib/profile-green-animate.svg" />
   <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" />
 </picture>
+
+### 📊 Metrics
+
+<p align="center">
+  <img src="./output/metrics.svg" alt="GitHub metrics" />
+</p>
