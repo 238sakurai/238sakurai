@@ -14,3 +14,17 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+### 📊 Metrics
+
+<p align="center">
+  <img src="./output/metrics.svg" alt="GitHub metrics" />
+</p>
+
+### 🌆 Contributions
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-rainbow.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./profile-3d-contrib/profile-gitblue.svg" />
+  <img src="./profile-3d-contrib/profile-gitblue.svg" alt="3D contribution graph" />
+</picture>

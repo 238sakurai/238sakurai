@@ -1,0 +1,33 @@
+name: Metrics
+
+on:
+  schedule:
+    - cron: "0 15 * * *" # 日本時間 0:00
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+# 3D contrib と同時に main へ push して競合しないよう直列化する
+concurrency:
+  group: profile-assets
+  cancel-in-progress: false
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@v3.34
+        with:
+          filename: output/metrics.svg
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          user: ${{ github.repository_owner }}
+          template: classic
+          base: header, activity, community, repositories, metadata
+          config_timezone: Asia/Tokyo
+          plugin_languages: yes
+          plugin_followup: yes
+          plugin_achievements: yes
+          plugin_achievements_display: compact
