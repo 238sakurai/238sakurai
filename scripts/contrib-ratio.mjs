@@ -1,18 +1,21 @@
 // コントリビューションの種類別の割合をドーナツグラフの SVG にする。
-// 使い方: GITHUB_TOKEN=... USERNAME=... node scripts/contrib-ratio.mjs [出力先]
+// 使い方: env GITHUB_TOKEN=... USERNAME=... node scripts/contrib-ratio.mjs [出力先]
+// （zsh では USERNAME が特殊変数のため、env を付けないとログイン名で上書きされる）
 // CONTRIB_JSON を渡すと API を呼ばずにその値で描く（表示確認用）。
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
 const OUTPUT = process.argv[2] ?? 'output/contrib-ratio.svg';
 
-// 3D グラフのレーダーと同じ5種類・同じ並び
+// 3D グラフのレーダーと同じ5種類・同じ並びに、種類別の内訳が返らない非公開分を加える。
+// 6つの合計がカレンダーの総数（3D グラフの contributions）と一致する
 const KINDS = [
   { key: 'totalCommitContributions', label: 'Commit', color: '#2da44e' },
   { key: 'totalIssueContributions', label: 'Issue', color: '#bf8700' },
   { key: 'totalPullRequestContributions', label: 'PullReq', color: '#0969da' },
   { key: 'totalPullRequestReviewContributions', label: 'Review', color: '#8250df' },
   { key: 'totalRepositoryContributions', label: 'Repo', color: '#cf222e' },
+  { key: 'restrictedContributionsCount', label: 'Private', color: '#8c959f' },
 ];
 
 const fetchCounts = async () => {
@@ -63,7 +66,7 @@ const render = (counts) => {
     });
 
   const legend = items.map((i, n) => {
-    const y = 48 + n * 32;
+    const y = 30 + n * 32;
     const pct = total > 0 ? `${((i.value / total) * 100).toFixed(1)}%` : '-';
     return `<rect x="240" y="${y - 8}" width="16" height="16" rx="3" fill="${i.color}"/>
   <text x="266" y="${y}" class="fg">${i.label}</text>
