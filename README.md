@@ -23,10 +23,6 @@ Here are some ideas to get you started:
   <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" />
 </picture>
 
-<p align="center">
-  <img src="./output/contrib-ratio.svg" alt="Contribution ratio by type" />
-</p>
-
 ### 📊 Metrics
 
 <p align="center">

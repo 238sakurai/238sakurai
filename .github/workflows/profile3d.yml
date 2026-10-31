@@ -24,16 +24,11 @@ jobs:
           # PAT 未設定なら GITHUB_TOKEN（公開リポジトリの活動のみ）で動かす
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN || secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
-      - name: Generate contribution ratio donut
-        run: node scripts/contrib-ratio.mjs output/contrib-ratio.svg
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN || secrets.GITHUB_TOKEN }}
-          USERNAME: ${{ github.repository_owner }}
       - name: Commit & Push
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -A profile-3d-contrib/ output/contrib-ratio.svg
+          git add -A profile-3d-contrib/
           if git diff --cached --quiet; then
             echo "no changes"
             exit 0
